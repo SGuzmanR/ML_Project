@@ -5,19 +5,20 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    table = None
-    error = None
-    if request.method == 'POST':
-      start_date = request.form['start_date']
-      end_date = request.form['end_date']
-      usd_cost = request.form['usd_cost']
+  table = None
+  error = None
+  if request.method == 'POST':
+    start_date = request.form['start_date']
+    end_date = request.form['end_date']
+    usd_cost = request.form['usd_cost']
 
-      tabla, error = trm_prediction(start_date, end_date, float(usd_cost))
+    try:
+      table, error = trm_prediction(start_date, end_date, float(usd_cost))
+    except Exception as e:
+      error = str(e)
+      table = None
 
-    return render_template('index.html', table=table, error=error)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+  return render_template('index.html', table=table, error=error)
 
 @app.route("/fase1")
 def PhaseOne():
@@ -44,4 +45,4 @@ def PhaseSix():
   return render_template("PhaseSix.html")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+  app.run(debug=True)

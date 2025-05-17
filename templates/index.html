@@ -7,7 +7,7 @@
 </head>
 <body class="bg-light">
   <div class="container mt-5">
-    <h1 class="mb-4">📈 Predicción de la TRM y simulación de costos</h1>
+    <h1 class="mb-4">Predicción de la TRM y simulación de costos</h1>
 
     {% if error %}
       <div class="alert alert-danger">{{ error }}</div>
@@ -16,37 +16,37 @@
     <form method="POST" class="row g-3">
       <div class="col-md-4">
         <label>Desde</label>
-        <input type="date" name="fecha_inicio" class="form-control" required>
+        <input type="date" name="start_date" class="form-control" required>
       </div>
       <div class="col-md-4">
         <label>Hasta</label>
-        <input type="date" name="fecha_fin" class="form-control" required>
+        <input type="date" name="end_date" class="form-control" required>
       </div>
       <div class="col-md-4">
         <label>Costo USD</label>
-        <input type="number" name="costo_usd" class="form-control" value="100.0" step="0.01" required>
+        <input type="number" name="usd_cost" class="form-control" value="100.0" step="0.01" required>
       </div>
       <div class="col-12">
         <button type="submit" class="btn btn-primary">Predecir</button>
       </div>
     </form>
 
-    {% if tabla %}
+    {% if table %}
     <hr>
     <h4 class="mt-4">Resultados:</h4>
     <table class="table table-striped">
       <thead>
         <tr>
-          {% for key in tabla[0].keys() %}
+          {% for key in table[0].keys() %}
             <th>{{ key }}</th>
           {% endfor %}
         </tr>
       </thead>
       <tbody>
-        {% for fila in tabla %}
+        {% for row in table %}
           <tr>
-            {% for valor in fila.values() %}
-              <td>{{ valor }}</td>
+            {% for value in row.values() %}
+              <td>{{ value }}</td>
             {% endfor %}
           </tr>
         {% endfor %}
