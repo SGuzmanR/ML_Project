@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+
 from TRM import trm_prediction
 
 app = Flask(__name__)
